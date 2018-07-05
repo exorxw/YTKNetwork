@@ -345,6 +345,10 @@ typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
 ///  This is node.js return error message.
 - (NSString *)responseCodeMsg;
 
+/// This is reveal response json data.
+- (NSString *)responseJSONObjectKey;
+
+/// This is custom json/obj mapping.
 - (YICJSONMappingBlock)jsonMappingBlock;
 - (YICObjMappingBlock)objMappingBlock;
 - (id)applyResponseMapping:(id)json;

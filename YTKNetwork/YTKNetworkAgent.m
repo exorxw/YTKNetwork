@@ -337,7 +337,11 @@
                 break;
             case YTKResponseSerializerTypeJSON:
                 request.responseObject = [self.jsonResponseSerializer responseObjectForResponse:task.response data:request.responseData error:&serializationError];
-                request.responseJSONObject = request.responseObject;
+                if ([request responseJSONObjectKey].length > 0) {
+                    request.responseJSONObject = request.responseObject[[request responseJSONObjectKey]];
+                } else {
+                    request.responseJSONObject = request.responseObject;
+                }
                 break;
             case YTKResponseSerializerTypeXMLParser:
                 request.responseObject = [self.xmlParserResponseSerialzier responseObjectForResponse:task.response data:request.responseData error:&serializationError];

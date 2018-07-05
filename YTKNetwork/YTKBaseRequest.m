@@ -211,6 +211,10 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yirenyiche.request.valid
     return @"";
 }
 
+- (NSString *)responseJSONObjectKey {
+    return @"";
+}
+
 - (YICJSONMappingBlock)jsonMappingBlockk {
     return nil;
 }
