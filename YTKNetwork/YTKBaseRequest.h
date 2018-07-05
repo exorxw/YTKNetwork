@@ -30,6 +30,7 @@ FOUNDATION_EXPORT NSString *const YTKRequestValidationErrorDomain;
 NS_ENUM(NSInteger) {
     YTKRequestValidationErrorInvalidStatusCode = -8,
     YTKRequestValidationErrorInvalidJSONFormat = -9,
+    YTKRequestValidationErrorInvalidResponseCode = -10,
 };
 
 ///  HTTP Request method.
@@ -331,6 +332,12 @@ typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
 
 ///  This validator will be used to test if `responseStatusCode` is valid.
 - (BOOL)statusCodeValidator;
+
+///  This validator will check node.js return code, `0` means success.
+- (BOOL)responseCodeValidator;
+
+///  This is node.js return error message.
+- (NSString *)responseCodeMsg;
 
 @end
 

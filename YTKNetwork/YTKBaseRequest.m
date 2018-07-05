@@ -31,7 +31,7 @@
 #import "AFNetworking.h"
 #endif
 
-NSString *const YTKRequestValidationErrorDomain = @"com.yuantiku.request.validation";
+NSString *const YTKRequestValidationErrorDomain = @"com.yirenyiche.request.validation";
 
 @interface YTKBaseRequest ()
 
@@ -200,6 +200,14 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yuantiku.request.validat
 - (BOOL)statusCodeValidator {
     NSInteger statusCode = [self responseStatusCode];
     return (statusCode >= 200 && statusCode <= 299);
+}
+
+- (BOOL)responseCodeValidator {
+    return YES;
+}
+
+- (NSString *)responseCodeMsg {
+    return nil;
 }
 
 #pragma mark - NSObject

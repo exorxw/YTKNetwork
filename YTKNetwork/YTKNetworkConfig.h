@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///  Return a shared config object.
 + (YTKNetworkConfig *)sharedConfig;
 
-///  Request base URL, such as "http://www.yuantiku.com". Default is empty string.
+///  Request base URL, such as "http://www.yirenyiche.com". Default is empty string.
 @property (nonatomic, strong) NSString *baseUrl;
 ///  Request CDN URL. Default is empty string.
 @property (nonatomic, strong) NSString *cdnUrl;

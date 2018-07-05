@@ -64,7 +64,7 @@
         _config = [YTKNetworkConfig sharedConfig];
         _manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:_config.sessionConfiguration];
         _requestsRecord = [NSMutableDictionary dictionary];
-        _processingQueue = dispatch_queue_create("com.yuantiku.networkagent.processing", DISPATCH_QUEUE_CONCURRENT);
+        _processingQueue = dispatch_queue_create("com.yirenyiche.networkagent.processing", DISPATCH_QUEUE_CONCURRENT);
         _allStatusCodes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(100, 500)];
         pthread_mutex_init(&_lock, NULL);
 
@@ -281,16 +281,25 @@
         return result;
     }
     id json = [request responseJSONObject];
-    id validator = [request jsonValidator];
-    if (json && validator) {
-        result = [YTKNetworkUtils validateJSON:json withValidator:validator];
-        if (!result) {
-            if (error) {
-                *error = [NSError errorWithDomain:YTKRequestValidationErrorDomain code:YTKRequestValidationErrorInvalidJSONFormat userInfo:@{NSLocalizedDescriptionKey:@"Invalid JSON format"}];
+    result = [request responseCodeValidator];
+    if (result) {
+        id validator = [request jsonValidator];
+        if (json && validator) {
+            result = [YTKNetworkUtils validateJSON:json withValidator:validator];
+            if (!result) {
+                if (error) {
+                    *error = [NSError errorWithDomain:YTKRequestValidationErrorDomain code:YTKRequestValidationErrorInvalidJSONFormat userInfo:@{NSLocalizedDescriptionKey:@"Invalid JSON format"}];
+                }
+                return result;
             }
-            return result;
         }
+    } else {
+        if (error) {
+            *error = [NSError errorWithDomain:YTKRequestValidationErrorDomain code:YTKRequestValidationErrorInvalidResponseCode userInfo:@{NSLocalizedDescriptionKey:[request responseCodeMsg]}];
+        }
+        return result;
     }
+    
     return YES;
 }
 
