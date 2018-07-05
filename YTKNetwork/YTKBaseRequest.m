@@ -39,6 +39,7 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yirenyiche.request.valid
 @property (nonatomic, strong, readwrite) NSData *responseData;
 @property (nonatomic, strong, readwrite) id responseJSONObject;
 @property (nonatomic, strong, readwrite) id responseObject;
+@property (nonatomic, strong, readwrite) id responseMappingObject;
 @property (nonatomic, strong, readwrite) NSString *responseString;
 @property (nonatomic, strong, readwrite) NSError *error;
 
@@ -207,6 +208,18 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yirenyiche.request.valid
 }
 
 - (NSString *)responseCodeMsg {
+    return @"";
+}
+
+- (YICJSONMappingBlock)jsonMappingBlockk {
+    return nil;
+}
+
+- (YICObjMappingBlock)objMappingBlock {
+    return nil;
+}
+
+- (id)applyResponseMapping:(id)json {
     return nil;
 }
 

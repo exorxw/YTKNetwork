@@ -280,9 +280,10 @@
         }
         return result;
     }
-    id json = [request responseJSONObject];
+    // verify the response code
     result = [request responseCodeValidator];
     if (result) {
+        id json = [request responseJSONObject];
         id validator = [request jsonValidator];
         if (json && validator) {
             result = [YTKNetworkUtils validateJSON:json withValidator:validator];
@@ -353,7 +354,12 @@
         succeed = [self validateResult:request error:&validationError];
         requestError = validationError;
     }
-
+    // apply the custom mapper for json
+    if ([request jsonMappingBlock]) {
+        request.responseMappingObject = [request jsonMappingBlock](request.responseJSONObject);
+    } else if ([request objMappingBlock]) {
+        request.responseMappingObject = [request applyResponseMapping:request.responseJSONObject];
+    }
     if (succeed) {
         [self requestDidSucceedWithRequest:request];
     } else {

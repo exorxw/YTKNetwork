@@ -72,6 +72,9 @@ typedef NS_ENUM(NSInteger, YTKRequestPriority) {
 typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 typedef void (^AFURLSessionTaskProgressBlock)(NSProgress *);
 
+typedef id (^YICJSONMappingBlock)(id json);
+typedef Class (^YICObjMappingBlock)(void);
+    
 @class YTKBaseRequest;
 
 typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
@@ -166,6 +169,9 @@ typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
 ///  If you use `YTKResponseSerializerTypeJSON`, this is a convenience (and sematic) getter
 ///  for the response object. Otherwise this value is nil.
 @property (nonatomic, strong, readonly, nullable) id responseJSONObject;
+
+/// The custom object with mapper. Note this value can be nil if mapper is nil.
+@property (nonatomic, strong, readonly, nullable) id responseMappingObject;
 
 ///  This error can be either serialization error or network error. If nothing wrong happens
 ///  this value will be nil.
@@ -338,6 +344,10 @@ typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
 
 ///  This is node.js return error message.
 - (NSString *)responseCodeMsg;
+
+- (YICJSONMappingBlock)jsonMappingBlock;
+- (YICObjMappingBlock)objMappingBlock;
+- (id)applyResponseMapping:(id)json;
 
 @end
 
