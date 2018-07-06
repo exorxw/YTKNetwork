@@ -219,7 +219,7 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yirenyiche.request.valid
     return nil;
 }
 
-- (Class)objMappingBlock {
+- (Class)objMappingClass {
     return nil;
 }
 
