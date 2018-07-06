@@ -361,8 +361,8 @@
     // apply the custom mapper for json
     if ([request jsonMappingBlock]) {
         request.responseMappingObject = [request jsonMappingBlock](request.responseJSONObject);
-    } else if ([request objMappingBlock]) {
-        request.responseMappingObject = [request applyResponseMapping:request.responseJSONObject];
+    } else if ([request objMappingClass]) {
+        request.responseMappingObject = [request applyResponseObjMapping:request.responseJSONObject];
     }
     if (succeed) {
         [self requestDidSucceedWithRequest:request];

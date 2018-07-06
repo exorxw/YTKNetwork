@@ -73,8 +73,7 @@ typedef void (^AFConstructingBlock)(id<AFMultipartFormData> formData);
 typedef void (^AFURLSessionTaskProgressBlock)(NSProgress *);
 
 typedef id (^YICJSONMappingBlock)(id json);
-typedef Class (^YICObjMappingBlock)(void);
-    
+
 @class YTKBaseRequest;
 
 typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
@@ -350,8 +349,8 @@ typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
 
 /// This is custom json/obj mapping.
 - (YICJSONMappingBlock)jsonMappingBlock;
-- (YICObjMappingBlock)objMappingBlock;
-- (id)applyResponseMapping:(id)json;
+- (Class)objMappingClass;
+- (id)applyResponseObjMapping:(id)json;
 
 @end
 
