@@ -42,6 +42,18 @@ void YTKLog(NSString *format, ...) {
 #endif
 }
 
+void YTKTinyLog(NSString *format, ...) {
+#ifdef DEBUG
+    if (![YTKNetworkConfig sharedConfig].tinyDebugLogEnabled) {
+        return;
+    }
+    va_list argptr;
+    va_start(argptr, format);
+    NSLogv(format, argptr);
+    va_end(argptr);
+#endif
+}
+
 @implementation YTKNetworkUtils
 
 + (BOOL)validateJSON:(id)json withValidator:(id)jsonValidator {

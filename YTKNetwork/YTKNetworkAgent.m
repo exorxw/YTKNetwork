@@ -364,6 +364,9 @@
     } else if ([request objMappingClass]) {
         request.responseMappingObject = [request applyResponseObjMapping:request.responseJSONObject];
     }
+    // print tiny req/resp log
+    YTKTinyLog(@"\n<--------req: %@,,, \n resp: %@ -------->\n", request, request.responseObject);
+    
     if (succeed) {
         [self requestDidSucceedWithRequest:request];
     } else {

@@ -72,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
 ///  Whether to log debug info. Default is NO;
 @property (nonatomic) BOOL debugLogEnabled;
+@property (nonatomic) BOOL tinyDebugLogEnabled;
 ///  SessionConfiguration will be used to initialize AFHTTPSessionManager. Default is nil.
 @property (nonatomic, strong) NSURLSessionConfiguration* sessionConfiguration;
 
