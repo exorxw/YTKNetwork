@@ -296,7 +296,7 @@
         }
     } else {
         if (error) {
-            *error = [NSError errorWithDomain:YTKRequestValidationErrorDomain code:YTKRequestValidationErrorInvalidResponseCode userInfo:@{NSLocalizedDescriptionKey:[request responseCodeMsg]}];
+            *error = [NSError errorWithDomain:YTKRequestValidationErrorDomain code:[request responseCode] userInfo:@{NSLocalizedDescriptionKey:[request responseCodeMsg]}];
         }
         return result;
     }

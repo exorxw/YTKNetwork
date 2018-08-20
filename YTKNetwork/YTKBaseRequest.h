@@ -341,6 +341,9 @@ typedef void(^YTKRequestCompletionBlock)(__kindof YTKBaseRequest *request);
 ///  This validator will check node.js return code, `0` means success.
 - (BOOL)responseCodeValidator;
 
+///  This is node.js return error code.
+- (NSInteger)responseCode;
+
 ///  This is node.js return error message.
 - (NSString *)responseCodeMsg;
 

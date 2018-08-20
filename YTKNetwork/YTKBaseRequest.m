@@ -207,6 +207,10 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yirenyiche.request.valid
     return YES;
 }
 
+- (NSInteger)responseCode {
+    return -999;
+}
+
 - (NSString *)responseCodeMsg {
     return @"";
 }
