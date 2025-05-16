@@ -174,6 +174,10 @@ NSString *const YTKRequestValidationErrorDomain = @"com.yirenyiche.request.valid
     return YTKResponseSerializerTypeJSON;
 }
 
+- (NSURLRequestCachePolicy)cachePolicy {
+    return NSURLRequestUseProtocolCachePolicy;
+}
+
 - (NSArray *)requestAuthorizationHeaderFieldArray {
     return nil;
 }

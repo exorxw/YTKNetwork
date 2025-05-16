@@ -170,7 +170,8 @@
     id param = request.requestArgument;
     AFConstructingBlock constructingBlock = [request constructingBodyBlock];
     AFHTTPRequestSerializer *requestSerializer = [self requestSerializerForRequest:request];
-
+    requestSerializer.cachePolicy = request.cachePolicy;
+    
     switch (method) {
         case YTKRequestMethodGET:
             if (request.resumableDownloadPath) {
